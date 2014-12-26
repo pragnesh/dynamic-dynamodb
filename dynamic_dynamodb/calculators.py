@@ -6,7 +6,9 @@ from dynamic_dynamodb.log_handler import LOGGER as logger
 
 
 def decrease_reads_in_percent(
-        current_provisioning, percent, min_provisioned_reads, log_tag):
+        current_provisioning, percent, min_provisioned_reads,
+        consumed_read_units_percent, increase_reads_unit,
+        increase_reads_with, log_tag):
     """ Decrease the current_provisioning with percent %
 
     :type current_provisioning: int
@@ -20,7 +22,16 @@ def decrease_reads_in_percent(
     :returns: int -- New provisioning value
     """
     decrease = int(float(current_provisioning)*(float(percent)/100))
+    consumed_read_units_percent = float(consumed_read_units_percent)
+    consumption_based_current_provisioning = \
+        float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
+    if(increase_reads_unit == 'percent')
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
+    else
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
     updated_provisioning = current_provisioning - decrease
+    if updated_provisioning_consumption < updated_provisioning:
+        updated_provisioning = updated_provisioning_consumption
     min_provisioned_reads = __get_min_reads(
         current_provisioning,
         min_provisioned_reads,
@@ -41,7 +52,9 @@ def decrease_reads_in_percent(
 
 
 def decrease_reads_in_units(
-        current_provisioning, units, min_provisioned_reads, log_tag):
+        current_provisioning, units, min_provisioned_reads,
+        consumed_read_units_percent, increase_reads_unit,
+        increase_reads_with, log_tag):
     """ Decrease the current_provisioning with units units
 
     :type current_provisioning: int
@@ -54,7 +67,16 @@ def decrease_reads_in_units(
     :type log_tag: str
     :param log_tag: Prefix for the log
     """
+    consumed_read_units_percent = float(consumed_read_units_percent)
+    consumption_based_current_provisioning = \
+        float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
+    if(increase_reads_unit == 'percent')
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
+    else
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
     updated_provisioning = int(current_provisioning) - int(units)
+    if updated_provisioning_consumption < updated_provisioning:
+        updated_provisioning = updated_provisioning_consumption
     min_provisioned_reads = __get_min_reads(
         current_provisioning,
         min_provisioned_reads,
@@ -77,7 +99,9 @@ def decrease_reads_in_units(
 
 
 def decrease_writes_in_percent(
-        current_provisioning, percent, min_provisioned_writes, log_tag):
+        current_provisioning, percent, min_provisioned_writes,
+        consumed_write_units_percent, increase_writes_unit,
+        increase_writes_with, log_tag):
     """ Decrease the current_provisioning with percent %
 
     :type current_provisioning: int
@@ -91,7 +115,16 @@ def decrease_writes_in_percent(
     :param log_tag: Prefix for the log
     """
     decrease = int(float(current_provisioning)*(float(percent)/100))
+    consumed_write_units_percent = float(consumed_write_units_percent)
+    consumption_based_current_provisioning = \
+        float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
+    if(increase_writes_unit == 'percent')
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
+    else
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
     updated_provisioning = current_provisioning - decrease
+    if updated_provisioning_consumption < updated_provisioning:
+        updated_provisioning = updated_provisioning_consumption
     min_provisioned_writes = __get_min_writes(
         current_provisioning,
         min_provisioned_writes,
@@ -114,7 +147,9 @@ def decrease_writes_in_percent(
 
 
 def decrease_writes_in_units(
-        current_provisioning, units, min_provisioned_writes, log_tag):
+        current_provisioning, units, min_provisioned_writes,
+        consumed_write_units_percent, increase_writes_unit,
+        increase_writes_with, log_tag):
     """ Decrease the current_provisioning with units units
 
     :type current_provisioning: int
@@ -127,7 +162,16 @@ def decrease_writes_in_units(
     :type log_tag: str
     :param log_tag: Prefix for the log
     """
+    consumed_write_units_percent = float(consumed_write_units_percent)
+    consumption_based_current_provisioning = \
+        float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
+    if(increase_writes_unit == 'percent')
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
+    else
+        updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
     updated_provisioning = int(current_provisioning) - int(units)
+    if updated_provisioning_consumption < updated_provisioning:
+        updated_provisioning = updated_provisioning_consumption
     min_provisioned_writes = __get_min_writes(
         current_provisioning,
         min_provisioned_writes,
@@ -221,7 +265,7 @@ def increase_reads_in_units(
         int(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
 
     if consumption_based_current_provisioning > current_provisioning:
-        updated_provisioning = consumption_based_current_provisioning + units
+        updated_provisioning = consumption_based_current_provisioning + 3*units
     else:
         updated_provisioning = int(current_provisioning) + units
 
@@ -314,7 +358,7 @@ def increase_writes_in_units(
         int(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
 
     if consumption_based_current_provisioning > current_provisioning:
-        updated_provisioning = consumption_based_current_provisioning + units
+        updated_provisioning = consumption_based_current_provisioning + 3*units
     else:
         updated_provisioning = int(current_provisioning) + units
 

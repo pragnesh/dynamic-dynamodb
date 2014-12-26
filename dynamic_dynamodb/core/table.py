@@ -278,12 +278,18 @@ def __ensure_provisioning_reads(table_name, key_name, num_consec_read_checks):
                     updated_read_units,
                     decrease_reads_with,
                     get_table_option(key_name, 'min_provisioned_reads'),
+                    consumed_read_units_percent,
+                    increase_reads_unit,
+                    increase_reads_with,
                     table_name)
             else:
                 calculated_provisioning = calculators.decrease_reads_in_units(
                     updated_read_units,
                     decrease_reads_with,
                     get_table_option(key_name, 'min_provisioned_reads'),
+                    consumed_read_units_percent,
+                    increase_reads_unit,
+                    increase_reads_with,
                     table_name)
 
             if current_read_units != calculated_provisioning:
@@ -483,12 +489,18 @@ def __ensure_provisioning_writes(
                         current_write_units,
                         decrease_writes_with,
                         get_table_option(key_name, 'min_provisioned_writes'),
+                        consumed_write_units_percent,
+                        increase_writes_unit,
+                        increase_writes_with,
                         table_name)
             else:
                 calculated_provisioning = calculators.decrease_writes_in_units(
                     current_write_units,
                     decrease_writes_with,
                     get_table_option(key_name, 'min_provisioned_writes'),
+                    consumed_write_units_percent,
+                    increase_writes_unit,
+                    increase_writes_with,
                     table_name)
 
             if current_write_units != calculated_provisioning:
