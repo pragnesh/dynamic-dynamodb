@@ -27,7 +27,7 @@ def decrease_reads_in_percent(
         float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
     if increase_reads_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
-    else
+    else:
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
     updated_provisioning = current_provisioning - decrease
     if updated_provisioning_consumption < updated_provisioning:
@@ -72,7 +72,7 @@ def decrease_reads_in_units(
         float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
     if increase_reads_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
-    else
+    else:
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
     updated_provisioning = int(current_provisioning) - int(units)
     if updated_provisioning_consumption < updated_provisioning:
@@ -120,7 +120,7 @@ def decrease_writes_in_percent(
         float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
     if increase_writes_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
-    else
+    else:
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
     updated_provisioning = current_provisioning - decrease
     if updated_provisioning_consumption < updated_provisioning:
@@ -167,7 +167,7 @@ def decrease_writes_in_units(
         float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
     if increase_writes_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
-    else
+    else:
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
     updated_provisioning = int(current_provisioning) - int(units)
     if updated_provisioning_consumption < updated_provisioning:
