@@ -25,7 +25,7 @@ def decrease_reads_in_percent(
     consumed_read_units_percent = float(consumed_read_units_percent)
     consumption_based_current_provisioning = \
         float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
-    if(increase_reads_unit == 'percent')
+    if increase_reads_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
     else
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
@@ -70,7 +70,7 @@ def decrease_reads_in_units(
     consumed_read_units_percent = float(consumed_read_units_percent)
     consumption_based_current_provisioning = \
         float(math.ceil(current_provisioning*(consumed_read_units_percent/100)))
-    if(increase_reads_unit == 'percent')
+    if increase_reads_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_reads_with/100)))
     else
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_reads_with)
@@ -118,7 +118,7 @@ def decrease_writes_in_percent(
     consumed_write_units_percent = float(consumed_write_units_percent)
     consumption_based_current_provisioning = \
         float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
-    if(increase_writes_unit == 'percent')
+    if increase_writes_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
     else
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
@@ -165,7 +165,7 @@ def decrease_writes_in_units(
     consumed_write_units_percent = float(consumed_write_units_percent)
     consumption_based_current_provisioning = \
         float(math.ceil(current_provisioning*(consumed_write_units_percent/100)))
-    if(increase_writes_unit == 'percent')
+    if increase_writes_unit == 'percent':
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(math.ceil(consumption_based_current_provisioning*(increase_writes_with/100)))
     else
         updated_provisioning_consumption = int(consumption_based_current_provisioning) + int(increase_writes_with)
